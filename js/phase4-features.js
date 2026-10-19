@@ -555,28 +555,16 @@
 
   // ========== 功能4：每日一题 ==========
   function getDailyQuestion() {
-    const today = new Date().toDateString();
-    const saved = localStorage.getItem('jiangshan_daily');
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        if (data.date === today) return data;
-      } catch {}
-    }
-    // 根据日期选择题目
-    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-    const idx = dayOfYear % DAILY_QUESTIONS.length;
+    // 每次随机选题，不再按日期固定
+    const idx = Math.floor(Math.random() * DAILY_QUESTIONS.length);
     const q = DAILY_QUESTIONS[idx];
-    const data = { date: today, question: q, answered: false, correct: null };
-    localStorage.setItem('jiangshan_daily', JSON.stringify(data));
-    return data;
+    return { question: q, answered: false, correct: null };
   }
 
   function answerDaily(optionIdx) {
     const data = getDailyQuestion();
     data.answered = true;
     data.correct = optionIdx === data.question.answer;
-    localStorage.setItem('jiangshan_daily', JSON.stringify(data));
     renderDailyCard();
 
     // 如果答错，加入错题本
