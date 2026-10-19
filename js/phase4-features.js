@@ -554,11 +554,15 @@
   }
 
   // ========== 功能4：每日一题 ==========
+  let currentDaily = null;
+
   function getDailyQuestion() {
-    // 每次随机选题，不再按日期固定
+    // 已有题目则返回，否则随机选题
+    if (currentDaily) return currentDaily;
     const idx = Math.floor(Math.random() * DAILY_QUESTIONS.length);
     const q = DAILY_QUESTIONS[idx];
-    return { question: q, answered: false, correct: null };
+    currentDaily = { question: q, answered: false, correct: null };
+    return currentDaily;
   }
 
   function answerDaily(optionIdx) {
@@ -592,7 +596,7 @@
     card.innerHTML = '';
     card.appendChild(el('div', { class: 'daily-header' }, [
       el('span', { class: 'daily-title', text: '📅 每日一题' }),
-      el('button', { class: 'panel-close', text: '✕', onclick: 'document.getElementById("daily-card").remove()' })
+      el('button', { class: 'panel-close', text: '✕', onclick: 'window.__jiangshan_phase4.closeDailyCard()' })
     ]));
 
     const body = el('div', { class: 'daily-body' });
@@ -623,9 +627,16 @@
     const card = $('#daily-card');
     if (card) {
       card.remove();
+      currentDaily = null; // 关闭后重置，下次打开出新题
     } else {
       renderDailyCard();
     }
+  }
+
+  function closeDailyCard() {
+    const card = $('#daily-card');
+    if (card) card.remove();
+    currentDaily = null;
   }
 
   function checkDailyPopup() {
@@ -668,6 +679,7 @@
     removeWrongAndRefresh,
     closeWrongPanel,
     toggleDailyCard,
+    closeDailyCard,
     answerDaily
   };
 
