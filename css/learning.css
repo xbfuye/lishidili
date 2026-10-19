@@ -1,0 +1,335 @@
+/* 江山时序 - 学习增强模块样式 */
+
+/* 学习工具栏 */
+.learning-toolbar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-left: 8px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(139, 115, 85, 0.3);
+}
+
+.learning-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.learning-btn:hover {
+  background: rgba(139, 115, 85, 0.15);
+}
+
+/* Toast 提示 */
+.learning-toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(60, 45, 30, 0.92);
+  color: #f3eee4;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 10000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  max-width: 80vw;
+  text-align: center;
+}
+
+.learning-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 通用面板 */
+.learning-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #faf6ee;
+  border: 1px solid #c9b896;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  z-index: 9999;
+  width: 480px;
+  max-width: 92vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e0d5c0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a3728;
+  background: linear-gradient(135deg, #f5ede0, #ede0cc);
+  border-radius: 12px 12px 0 0;
+}
+
+.panel-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #8b7355;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.panel-close:hover {
+  background: rgba(139, 115, 85, 0.15);
+}
+
+.panel-body {
+  padding: 20px;
+}
+
+/* 统计行 */
+.stat-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: #8b4513;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #8b7355;
+  margin-top: 4px;
+}
+
+/* 进度条 */
+.progress-bar-wrap {
+  margin-bottom: 16px;
+}
+
+.progress-bar-label {
+  font-size: 13px;
+  color: #6b5344;
+  margin-bottom: 6px;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: #e8dcc8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #c9a96e, #8b6914);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* 朝代标签 */
+.dynasty-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.dynasty-tag {
+  background: #ede0cc;
+  color: #6b5344;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  border: 1px solid #d4c4a8;
+}
+
+.empty-hint {
+  text-align: center;
+  color: #a09080;
+  font-size: 13px;
+  padding: 20px 0;
+}
+
+.reset-btn {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: 1px solid #d4c4a8;
+  color: #8b7355;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background: rgba(139, 115, 85, 0.1);
+}
+
+/* 快捷键表格 */
+.shortcut-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.shortcut-table td {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0e8d8;
+}
+
+.shortcut-keys {
+  font-family: 'Courier New', monospace;
+  background: #ede0cc;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #6b4423;
+  white-space: nowrap;
+  font-size: 12px;
+  width: 140px;
+}
+
+.shortcut-desc {
+  padding-left: 12px;
+  color: #5a4a3a;
+}
+
+.help-tip {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: #f5ede0;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #8b7355;
+  line-height: 1.6;
+}
+
+/* 导览遮罩 */
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 10, 0.7);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.tour-card {
+  background: #faf6ee;
+  border-radius: 16px;
+  padding: 32px;
+  width: 520px;
+  max-width: 92vw;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  font-family: 'Noto Serif SC', serif;
+}
+
+.tour-card h2 {
+  font-size: 24px;
+  color: #4a3728;
+  margin: 0 0 8px;
+}
+
+.tour-card > p {
+  color: #8b7355;
+  font-size: 14px;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.tour-features {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.tour-feature {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0e8d8;
+}
+
+.tour-feature:last-child {
+  border-bottom: none;
+}
+
+.tour-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.tour-feature b {
+  color: #6b4423;
+  font-size: 14px;
+}
+
+.tour-feature p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #8b7355;
+  line-height: 1.5;
+}
+
+.tour-start-btn {
+  background: linear-gradient(135deg, #8b6914, #6b4423);
+  color: #f3eee4;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tour-start-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(107, 68, 35, 0.4);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .learning-toolbar {
+    margin-left: 4px;
+    padding-left: 4px;
+  }
+  .learning-btn {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  .learning-btn span {
+    display: none;
+  }
+  .learning-btn::after {
+    content: attr(title);
+    font-size: 11px;
+  }
+  .learning-panel {
+    width: 94vw;
+  }
+  .shortcut-keys {
+    width: 100px;
+    font-size: 11px;
+  }
+}

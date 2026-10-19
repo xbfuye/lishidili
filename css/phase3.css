@@ -1,0 +1,479 @@
+/* 江山时序 - 第三期功能样式 */
+
+/* 详情卡片通用样式 */
+.detail-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #faf6ee;
+  border: 1px solid #c9b896;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  z-index: 9999;
+  width: 480px;
+  max-width: 94vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Serif SC', serif;
+  overflow: hidden;
+}
+
+.detail-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0d5c0;
+  background: linear-gradient(135deg, #f5ede0, #ede0cc);
+  flex-shrink: 0;
+}
+
+.detail-card-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-card-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+/* 历史人物卡片 */
+.figure-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4a3728;
+}
+
+.figure-title {
+  font-size: 13px;
+  color: #8b6914;
+  font-weight: 600;
+}
+
+.figure-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #6b5344;
+}
+
+.figure-meta span {
+  background: #f5ede0;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.figure-deeds {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4a3728;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 3px solid #c9a96e;
+}
+
+.figure-quote {
+  background: linear-gradient(135deg, #f5ede0, #ede0cc);
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.quote-label {
+  font-size: 12px;
+  color: #8b6914;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.quote-text {
+  font-size: 15px;
+  color: #6b4423;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* 人物地图标记 */
+.figure-marker-dot {
+  fill: #c0392b;
+  stroke: #fff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.figure-marker-label {
+  font-size: 10px;
+  fill: #c0392b;
+  font-weight: 700;
+  font-family: 'Noto Sans SC', sans-serif;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+/* 诗词卡片 */
+.poem-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4a3728;
+}
+
+.poem-author {
+  font-size: 13px;
+  color: #8b6914;
+}
+
+.poem-place {
+  font-size: 13px;
+  color: #8b7355;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background: #f5ede0;
+  border-radius: 6px;
+}
+
+.poem-content {
+  font-size: 16px;
+  line-height: 2;
+  color: #4a3728;
+  text-align: center;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-family: 'KaiTi', 'STKaiti', serif;
+}
+
+.poem-analysis {
+  background: linear-gradient(135deg, #f5ede0, #ede0cc);
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.analysis-label {
+  font-size: 12px;
+  color: #8b6914;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.analysis-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #6b5344;
+}
+
+/* 诗词地图标记 */
+.poem-marker-dot {
+  fill: #2980b9;
+  stroke: #fff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* 学习闯关面板 */
+.challenge-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #faf6ee;
+  border: 1px solid #c9b896;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  z-index: 9999;
+  width: 520px;
+  max-width: 94vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.challenge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e0d5c0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a3728;
+  background: linear-gradient(135deg, #f5ede0, #ede0cc);
+  flex-shrink: 0;
+}
+
+.challenge-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.challenge-intro {
+  font-size: 13px;
+  color: #8b7355;
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 10px;
+  background: #f5ede0;
+  border-radius: 8px;
+}
+
+.challenge-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.challenge-level {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e8e0d0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.challenge-level:hover:not(.locked) {
+  border-color: #c9a96e;
+  box-shadow: 0 2px 8px rgba(139, 105, 20, 0.15);
+  transform: translateX(4px);
+}
+
+.challenge-level.passed {
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  border-color: #28a745;
+}
+
+.challenge-level.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.level-num {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #8b6914, #6b4423);
+  color: #f3eee4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.challenge-level.passed .level-num {
+  background: #28a745;
+}
+
+.level-info {
+  flex: 1;
+}
+
+.level-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #4a3728;
+  margin-bottom: 2px;
+}
+
+.level-desc {
+  font-size: 12px;
+  color: #8b7355;
+}
+
+.challenge-stats {
+  text-align: center;
+  font-size: 14px;
+  color: #8b6914;
+  font-weight: 600;
+  padding: 10px;
+  background: #f5ede0;
+  border-radius: 8px;
+}
+
+/* 闯关答题 */
+.challenge-progress {
+  font-size: 13px;
+  color: #8b6914;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.challenge-question {
+  font-size: 17px;
+  font-weight: 700;
+  color: #4a3728;
+  margin-bottom: 16px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #c9a96e;
+  line-height: 1.6;
+}
+
+.challenge-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.challenge-option {
+  padding: 12px 16px;
+  border: 1px solid #c9b896;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  color: #4a3728;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.challenge-option:hover:not(:disabled) {
+  background: #f5ede0;
+  border-color: #8b6914;
+}
+
+.challenge-option.correct {
+  background: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.challenge-option.wrong {
+  background: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.challenge-option:disabled {
+  cursor: default;
+}
+
+/* 闯关结果 */
+.challenge-result {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.challenge-result.pass .result-title {
+  color: #28a745;
+}
+
+.challenge-result.fail .result-title {
+  color: #dc3545;
+}
+
+.result-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.result-score {
+  font-size: 18px;
+  color: #4a3728;
+  margin-bottom: 8px;
+}
+
+.result-desc {
+  font-size: 14px;
+  color: #8b7355;
+  margin-bottom: 20px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.result-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  background: linear-gradient(135deg, #8b6914, #6b4423);
+  color: #f3eee4;
+}
+
+.result-btn.retry {
+  background: linear-gradient(135deg, #2d5a3d, #1a3d2a);
+}
+
+/* 成语卡片 */
+.idiom-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4a3728;
+}
+
+.idiom-place {
+  font-size: 12px;
+  color: #8b7355;
+  margin-top: 4px;
+}
+
+.idiom-story-label {
+  font-size: 13px;
+  color: #8b6914;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.idiom-story {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #4a3728;
+  padding: 14px;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 3px solid #c9a96e;
+}
+
+/* 成语地图标记 */
+.idiom-marker-dot {
+  fill: #8e44ad;
+  stroke: #fff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .detail-card, .challenge-panel {
+    width: 96vw;
+    max-height: 90vh;
+  }
+  .figure-name, .idiom-title {
+    font-size: 19px;
+  }
+  .poem-content {
+    font-size: 14px;
+  }
+  .challenge-question {
+    font-size: 15px;
+  }
+  .figure-marker-label {
+    font-size: 8px;
+  }
+}
