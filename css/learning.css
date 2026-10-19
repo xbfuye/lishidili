@@ -313,29 +313,15 @@
   .learning-toolbar {
     margin-left: 2px;
     padding-left: 4px;
-    gap: 2px;
+    gap: 4px;
   }
   .learning-btn {
-    font-size: 14px;
-    padding: 6px 8px;
-    min-width: 36px;
-    min-height: 36px;
+    font-size: 12px;
+    padding: 5px 8px;
+    min-height: 32px;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-shrink: 0;
-  }
-  .learning-btn span {
-    display: none;
-  }
-  .learning-btn::after {
-    content: '';
-    display: none;
-  }
-  .learning-btn::before {
-    content: attr(data-icon);
-    font-size: 18px;
-    line-height: 1;
   }
   .learning-panel {
     width: 94vw;
