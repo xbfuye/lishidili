@@ -1,5 +1,5 @@
-/**
- * 江山时序 - 第二期学习增强功能
+﻿/**
+ * 华夏文明 - 第二期学习增强功能
  * 1. 历史事件动画播放
  * 2. 帝王世系图
  * 3. 学习笔记导出
@@ -187,11 +187,17 @@
 
   // ========== 功能1：历史事件动画播放 ==========
   let eventPlaybackActive = false;
+  let eventVoiceEnabled = true; // 默认开启语音讲解
   let lastEventYear = null;
 
   function getCurrentYear() {
-    // 从年份显示元素读取
-    const yearDisplay = $('.year-display, .current-year, #year-label, [class*="year"]');
+    // 从年份输入框读取（最可靠）
+    const input = document.getElementById('inp-year');
+    if (input && input.value) {
+      return parseInt(input.value);
+    }
+    // 备选：从年份显示元素读取
+    const yearDisplay = $('.ep-year, .year-display, .current-year, #year-label');
     if (yearDisplay) {
       const text = yearDisplay.textContent;
       const match = text.match(/前?(\d+)/);
@@ -211,8 +217,35 @@
     }
     if (eventPlaybackActive) {
       startEventMonitoring();
-      showToast('事件讲解已开启，播放时间轴时会自动弹出重要事件');
+      // 在用户点击的直接上下文中调用语音，解锁自动播放限制
+      if (eventVoiceEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const unlockUtter = new SpeechSynthesisUtterance('事件讲解已开启');
+        unlockUtter.lang = 'zh-CN';
+        unlockUtter.rate = 1.0;
+        window.speechSynthesis.speak(unlockUtter);
+      }
+      showToast('事件讲解已开启，播放时会语音播报重要事件');
+    } else {
+      // 停止时取消语音
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      $('.event-playback-card')?.remove();
+      showToast('事件讲解已关闭');
     }
+  }
+
+  function toggleEventVoice() {
+    eventVoiceEnabled = !eventVoiceEnabled;
+    showToast(eventVoiceEnabled ? '语音讲解已开启' : '语音讲解已关闭');
+    if (!eventVoiceEnabled && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  function isVoiceEnabled() {
+    return eventVoiceEnabled;
   }
 
   function startEventMonitoring() {
@@ -238,21 +271,73 @@
     $('.event-playback-card')?.remove();
 
     const card = el('div', { class: 'event-playback-card' }, [
-      el('div', { class: 'event-playback-year', text: formatYear(event.year) + '年' }),
+      el('div', { class: 'event-playback-header' }, [
+        el('div', { class: 'event-playback-year', text: formatYear(event.year) + '年' }),
+        el('button', {
+          class: 'event-voice-toggle' + (eventVoiceEnabled ? ' active' : ''),
+          text: eventVoiceEnabled ? '🔊' : '🔇',
+          title: eventVoiceEnabled ? '点击关闭语音' : '点击开启语音',
+          onclick: 'window.__jiangshan_phase2.toggleEventVoice(); this.textContent = window.__jiangshan_phase2.isVoiceEnabled() ? "🔊" : "🔇"; this.classList.toggle("active", window.__jiangshan_phase2.isVoiceEnabled());'
+        })
+      ]),
       el('div', { class: 'event-playback-title', text: event.title }),
       el('div', { class: 'event-playback-desc', text: event.desc }),
-      el('div', { class: 'event-playback-place', text: '📍 ' + event.place })
+      el('div', { class: 'event-playback-place', text: '📍 ' + event.place }),
+      el('button', {
+        class: 'event-play-speech-btn',
+        text: '🔊 播放讲解',
+        onclick: `window.__jiangshan_phase2.speakEvent(${JSON.stringify(event).replace(/"/g, '&quot;')})`
+      })
     ]);
     document.body.appendChild(card);
 
     // 动画入场
     setTimeout(() => card.classList.add('show'), 50);
 
+    // 尝试自动语音朗读（在支持自动播放的浏览器上有效）
+    if (eventVoiceEnabled && 'speechSynthesis' in window) {
+      try {
+        window.speechSynthesis.cancel();
+        const speakText = `${formatYear(event.year)}年，${event.title}。${event.desc}`;
+        const utterance = new SpeechSynthesisUtterance(speakText);
+        utterance.lang = 'zh-CN';
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        utterance.onerror = () => {
+          // 自动播放被阻止时，显示播放按钮提示
+          const btn = card.querySelector('.event-play-speech-btn');
+          if (btn) btn.classList.add('show');
+        };
+        utterance.onstart = () => {
+          const btn = card.querySelector('.event-play-speech-btn');
+          if (btn) btn.classList.remove('show');
+        };
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {
+        // 忽略错误，用户可手动点击播放
+      }
+    }
+
     // 8秒后自动消失
     setTimeout(() => {
       card.classList.remove('show');
       setTimeout(() => card.remove(), 500);
-    }, 8000);
+    }, 10000);
+  }
+
+  function speakEvent(event) {
+    if (!('speechSynthesis' in window)) {
+      showToast('您的浏览器不支持语音朗读');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const speakText = `${formatYear(event.year)}年，${event.title}。${event.desc}`;
+    const utterance = new SpeechSynthesisUtterance(speakText);
+    utterance.lang = 'zh-CN';
+    utterance.rate = 0.9;
+    utterance.pitch = 1.0;
+    window.speechSynthesis.speak(utterance);
+    showToast('正在播放讲解...');
   }
 
   function formatYear(y) {
@@ -421,7 +506,7 @@
     });
 
     notes += `${'='.repeat(30)}\n`;
-    notes += `笔记由「江山时序」自动生成\n`;
+    notes += `笔记由「华夏文明」自动生成\n`;
 
     // 显示导出面板
     showExportPanel(notes, dynasty);
@@ -578,6 +663,9 @@
   // ========== 暴露全局 ==========
   window.__jiangshan_phase2 = {
     toggleEventPlayback,
+    toggleEventVoice,
+    isVoiceEnabled,
+    speakEvent,
     toggleEmperorPanel,
     showEmperors,
     closeEmperorPanel,

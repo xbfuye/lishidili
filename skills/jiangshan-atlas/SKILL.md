@@ -1,11 +1,11 @@
----
+﻿---
 name: jiangshan-atlas
-description: Locate historical Chinese events, classical poems, battles, and ancient places on the Jiangshan Historical Atlas (江山时序, 403 BCE – 2026 CE) by resolving a question into (year, place), generating an interactive deep-link URL, inspecting structured administrative context, and optionally rendering a high-resolution map screenshot. Use when the user asks about the time, location, territorial context, or administrative genealogy of a Chinese historical event, poem (e.g. "雪拥蓝关马不前"), person, or ancient place.
+description: Locate historical Chinese events, classical poems, battles, and ancient places on the Jiangshan Historical Atlas (华夏文明, 403 BCE – 2026 CE) by resolving a question into (year, place), generating an interactive deep-link URL, inspecting structured administrative context, and optionally rendering a high-resolution map screenshot. Use when the user asks about the time, location, territorial context, or administrative genealogy of a Chinese historical event, poem (e.g. "雪拥蓝关马不前"), person, or ancient place.
 ---
 
-# Jiangshan Historical Atlas (`江山时序`) Skill
+# Jiangshan Historical Atlas (`华夏文明`) Skill
 
-Use **江山时序 (Jiangshan Atlas)** to turn any question about Chinese history, classical literature, poetry, battles, or ancient geography into:
+Use **华夏文明 (Jiangshan Atlas)** to turn any question about Chinese history, classical literature, poetry, battles, or ancient geography into:
 1. A clickable **interactive deep-link URL** (`?year=<YEAR>&place=<PLACE>`)
 2. **Structured historical & administrative context (`--inspect`)** returning the exact reign era, regime (`polity`), macro-region (`道/路/行省`), prefecture (`郡/州/府`), modern province, and nearest ancient city
 3. An optional **high-resolution rendered map screenshot (`--out`)** showing dynastic territories, mountains/rivers, red pinpoint marker or multi-stop trajectory, and the 2,000-year administrative genealogy card (`点地溯源 · 古今政区沿革`).

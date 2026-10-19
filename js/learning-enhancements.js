@@ -1,5 +1,5 @@
-/**
- * 江山时序 - 学习增强模块
+﻿/**
+ * 华夏文明 - 学习增强模块
  * 功能：
  * 1. 随机探索（随机朝代/城市/事件）
  * 2. 学习进度追踪（localStorage）
@@ -242,7 +242,7 @@
 
     const tour = el('div', { id: 'tour-overlay', class: 'tour-overlay' }, [
       el('div', { class: 'tour-card' }, [
-        el('h2', { text: '欢迎来到江山时序' }),
+        el('h2', { text: '欢迎来到华夏文明' }),
         el('p', { text: '一幅可以拖动时间、点城读史、追随古人足迹的中国历史交互舆图。' }),
         el('div', { class: 'tour-features' }, [
           el('div', { class: 'tour-feature' }, [

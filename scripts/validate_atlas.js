@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * Automated Integrity & Topology Validation Suite for Jiangshan Atlas (江山时序)
+ * Automated Integrity & Topology Validation Suite for Jiangshan Atlas (华夏文明)
  * Zero external dependencies — runs in standard Node.js.
  */
 'use strict';
@@ -2072,7 +2072,7 @@ function main() {
     'index.html, style.css, and app.js must include autoplay aria-pressed state, accessible timeline band buttons, SEO directory locale sync, and quick search cleanup'
   );
   const mockSeoNav = {
-    innerHTML: '<h2>江山时序</h2>',
+    innerHTML: '<h2>华夏文明</h2>',
     dataset: {},
     setAttribute(k, v) {
       this[k] = v;
@@ -2102,7 +2102,7 @@ function main() {
   );
   ctrl.locale = 'zh';
   ctrl._syncSeoDirectoryLocale();
-  assert.strictEqual(mockSeoNav.innerHTML, '<h2>江山时序</h2>', '_syncSeoDirectoryLocale() must restore Chinese HTML when switching back to zh');
+  assert.strictEqual(mockSeoNav.innerHTML, '<h2>华夏文明</h2>', '_syncSeoDirectoryLocale() must restore Chinese HTML when switching back to zh');
   ctrl._clearQuickSearchInput();
   assert.strictEqual(mockSearchInp.value, '', '_clearQuickSearchInput() must clear #inp-map-search value');
   ctrl._id = origId23e;

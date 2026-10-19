@@ -1,7 +1,7 @@
-window.EN_LOCALE = {
+﻿window.EN_LOCALE = {
   "strings": {
     "title": "Chronicles of the Realm · Historical Atlas of China",
-    "brand_seal": "江山时序",
+    "brand_seal": "华夏文明",
     "brand_sub": "Atlas of China · 403 BCE → Present",
     "btn_layers": "Layers",
     "layer_grp_hist": "Historical Atlas Layers",
