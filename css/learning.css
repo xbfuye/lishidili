@@ -311,25 +311,87 @@
 /* 移动端适配 */
 @media (max-width: 768px) {
   .learning-toolbar {
-    margin-left: 4px;
+    margin-left: 2px;
     padding-left: 4px;
+    gap: 2px;
   }
   .learning-btn {
-    font-size: 11px;
-    padding: 4px 6px;
+    font-size: 14px;
+    padding: 6px 8px;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
   .learning-btn span {
     display: none;
   }
   .learning-btn::after {
-    content: attr(title);
-    font-size: 11px;
+    content: '';
+    display: none;
+  }
+  .learning-btn::before {
+    content: attr(data-icon);
+    font-size: 18px;
+    line-height: 1;
   }
   .learning-panel {
     width: 94vw;
+    max-height: 85vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .shortcut-keys {
     width: 100px;
     font-size: 11px;
+  }
+  /* 确保所有面板在移动端正常显示和可滚动 */
+  .learning-panel,
+  .detail-card,
+  .emperor-panel,
+  .quiz-panel,
+  .compare-view,
+  .tour-panel,
+  .mnemonic-panel,
+  .battle-panel,
+  .figure-encyclopedia-panel,
+  .modern-timeline-panel,
+  .geography-panel,
+  .world-panel,
+  .wrong-panel,
+  .daily-card {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    max-width: 95vw !important;
+    max-height: 85vh !important;
+  }
+  /* 确保按钮有足够的点击区域 */
+  .panel-close,
+  .dynasty-tab,
+  .quiz-option,
+  .fep-tab,
+  .fep-item,
+  .mtp-item,
+  .export-btn,
+  .battle-locate-btn,
+  .tour-play-btn,
+  .event-play-speech-btn {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 面板关闭按钮加大 */
+  .panel-close {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  /* 输入框在移动端可点击 */
+  input, select, textarea {
+    font-size: 16px; /* 防止iOS自动缩放 */
   }
 }

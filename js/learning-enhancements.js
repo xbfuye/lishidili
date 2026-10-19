@@ -280,13 +280,13 @@
     if (!controlStrip) return;
 
     const learningGroup = el('div', { class: 'learning-toolbar', role: 'toolbar', 'aria-label': '学习工具' }, [
-      el('button', { class: 'action-btn subtle learning-btn', title: '随机朝代 (R)', onclick: 'window.__jiangshan.randomDynasty()' }, [
+      el('button', { class: 'action-btn subtle learning-btn', 'data-icon': '🎲', title: '随机朝代 (R)', onclick: 'window.__jiangshan.randomDynasty()' }, [
         el('span', { text: '🎲 随机' })
       ]),
-      el('button', { class: 'action-btn subtle learning-btn', title: '学习进度', onclick: 'window.__jiangshan.toggleProgressPanel()' }, [
+      el('button', { class: 'action-btn subtle learning-btn', 'data-icon': '📊', title: '学习进度', onclick: 'window.__jiangshan.toggleProgressPanel()' }, [
         el('span', { text: '📊 进度' })
       ]),
-      el('button', { class: 'action-btn subtle learning-btn', title: '快捷键帮助 (H)', onclick: 'window.__jiangshan.toggleHelpPanel()' }, [
+      el('button', { class: 'action-btn subtle learning-btn', 'data-icon': '❓', title: '快捷键帮助 (H)', onclick: 'window.__jiangshan.toggleHelpPanel()' }, [
         el('span', { text: '❓ 帮助' })
       ])
     ]);
@@ -332,11 +332,27 @@
     showToast
   };
 
+  // ========== 自动提取按钮emoji用于移动端显示 ==========
+  function autoExtractIcons() {
+    setTimeout(() => {
+      document.querySelectorAll('.learning-btn').forEach(btn => {
+        if (btn.getAttribute('data-icon')) return;
+        const text = btn.textContent || '';
+        // 匹配emoji，包括带变体选择符的
+        const emojiMatch = text.match(/(?:[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F000}-\u{1F02F}\u{25B6}\u{25C0}\u{23F8}\u{23F9}\u{23EF}]\u{FE0F}?)/u);
+        if (emojiMatch) {
+          btn.setAttribute('data-icon', emojiMatch[0]);
+        }
+      });
+    }, 1000);
+  }
+
   // ========== 启动 ==========
   function init() {
     injectUI();
     initKeyboard();
     initProgressTracking();
+    autoExtractIcons();
     // 延迟显示导览，等主界面加载完
     setTimeout(showTour, 1500);
   }
